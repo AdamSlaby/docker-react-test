@@ -1,0 +1,7 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t arcmistrz/docker-react-test -f Dockerfile.dev .
+script:
+  - docker run -e CI=true arcmistrz/docker-react-test npm run test
