@@ -5,3 +5,14 @@ before_install:
   - docker build -t arcmistrz/docker-react-test -f Dockerfile.dev .
 script:
   - docker run -e CI=true arcmistrz/docker-react-test npm run test
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "Frontend"
+  env: "Frontend-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-381491975285"
+  bucket_path: "Frontend"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
